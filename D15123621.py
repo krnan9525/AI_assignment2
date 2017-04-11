@@ -5,7 +5,7 @@ import numpy as np
 import pybrain
 from pybrain.tools.shortcuts import buildNetwork
 from pybrain.datasets import SupervisedDataSet
-
+from pybrain.structure import TanhLayer
 from pandas import DataFrame, read_csv
 
 # General syntax to import a library but no functions:
@@ -24,8 +24,8 @@ with open("./data/trainingset.txt", "rt") as fin:
     with open("./data/trainingset_parsed.txt", "wt") as fout:
         for line in fin:
             line = line.replace('\"JobCat', '\"')
-            line = line.replace('\"unknown\"', '\"\"')
-            line = line.replace('\"?\"', '\"\"')
+            line = line.replace('\"unknown\"', '\"0\"')
+            line = line.replace('\"?\"', '\"0\"')
             line = line.replace('\"yes\"', '\"1\"')
             line = line.replace('\"no\"', '\"0\"')
             line = line.replace('\"married\"', '\"0\"')
@@ -60,17 +60,25 @@ training = pd.read_csv("./data/trainingset_parsed.txt", header=None)
 distinguish_arr = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2]  # 1=useful 0=useless 2=output
 type_arr = [2, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 0]  # 1=number 0=text
 ds = SupervisedDataSet(16, 1)
-
+max_arr = training.max()
+print(max_arr)
+min_arr = training.min()
+mean_arr = training.mean()
 # df_norm = (training - training.mean()) / (training.max() - training.min())
 
 # i=0
 for column in training:
     if(type_arr[column]==1 or type_arr[column]==0):
         #print(column)
-        training[column] = (training[column] - training[column].mean()) / (training[column].max() - training[column].min())
+        if((training[column].max() - training[column].min() != 0)):
+            training[column] = (training[column] - min_arr[column]) / (max_arr[column] - min_arr[column])
+        else:
+            training[column] = 0.0
     else:
         continue
         training[column] = (training[column] - training[column].mean()) / (training[column].max() - training[column].min())
+
+# print(training)
 
 for index, row in training.iterrows():
     temp_arr = []
@@ -80,16 +88,20 @@ for index, row in training.iterrows():
         if (distinguish_arr[i] == 1):
             if (isinstance(row[i], float)):
                 temp_arr.append(row[i])
+            else:
+                continue
             # if(isinstance(training[column][i], np.basestring)):
                 # temp_arr.append(training[column][i].)
         if (distinguish_arr[i] == 2):
-            arr_output = [row[i]]
+            arr_output.append(row[i])
     # print(temp_arr)
     ds.addSample(temp_arr, arr_output)
 
-net = buildNetwork(16, 20, 1)
-trainer = BackpropTrainer(net, ds)
+print("loaded finished")
 
+net = buildNetwork(16, 2000, 1)
+trainer = BackpropTrainer(net, ds)
+trainer.trainEpochs(6)
 
 print(len(ds))
 
@@ -98,8 +110,8 @@ with open("./data/new_queries.txt", "rt") as fin:
     with open("./data/new_queries_parsed.txt", "wt") as fout:
         for line in fin:
             line = line.replace('\"JobCat', '\"')
-            line = line.replace('\"unknown\"', '\"\"')
-            line = line.replace('\"?\"', '\"\"')
+            line = line.replace('\"unknown\"', '\"0\"')
+            line = line.replace('\"?\"', '\"0\"')
             line = line.replace('\"yes\"', '\"1\"')
             line = line.replace('\"no\"', '\"0\"')
             line = line.replace('\"married\"', '\"0\"')
@@ -136,12 +148,34 @@ queries = pd.read_csv("./data/new_queries_parsed.txt", header=None)
 
 for column in queries:
     if(type_arr[column]==1 or type_arr[column]==0):
-        queries[column] = (queries[column] - queries[column].mean()) / (training[column].max() - training[column].min())
-
+        if((training[column].max() - training[column].min() != 0)):
+            queries[column] = (queries[column] - min_arr[column]) / (max_arr[column]-min_arr[column])
+        else:
+            queries[column] = 0.0
+right_num = 0
+wrong_num = 0
 for index2, row in queries.iterrows():
     temp_arr = []
     for i in range(0,distinguish_arr.__len__()):
         if(distinguish_arr[i] == 1):
             temp_arr.append(row[i])
+    print(temp_arr)
     # print(temp_arr)
-    print(net.activate(temp_arr))
+    result = net.activate(temp_arr)[0]
+    if(result>0.5):
+        print("TypeB")
+        if(queries.irow(index2)[17] == 1):
+            print("Right")
+            right_num = right_num + 1
+        else:
+            print("Wrong")
+            wrong_num = wrong_num + 1
+    else:
+        print("TypeA")
+        if (queries.irow(index2)[17] == 0):
+            print("Right")
+            right_num = right_num + 1
+        else:
+            print("Wrong")
+            wrong_num = wrong_num + 1
+print("hit ratio: ", right_num/(right_num+wrong_num))
