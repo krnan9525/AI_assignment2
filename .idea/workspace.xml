@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93a44d70-8589-44ce-9794-dd26a682ca0b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/training_2.txt" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/research.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/output.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ID3_approach.py" afterPath="$PROJECT_DIR$/ID3_approach.py" />
     </list>
@@ -50,8 +49,8 @@
           <file leaf-file-name="ID3_approach.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/ID3_approach.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="442">
-                  <caret line="332" column="12" lean-forward="true" selection-start-line="332" selection-start-column="12" selection-end-line="332" selection-end-column="12" />
+                <state relative-caret-position="-1974">
+                  <caret line="214" column="9" lean-forward="true" selection-start-line="214" selection-start-column="9" selection-end-line="215" selection-end-column="33" />
                   <folding>
                     <element signature="e#0#12#0" expanded="true" />
                   </folding>
@@ -103,7 +102,7 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="datadescription.txt" pinned="false" current-in-tab="true">
+          <file leaf-file-name="datadescription.txt" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/data/datadescription.txt">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="374">
@@ -123,10 +122,10 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="output.txt" pinned="false" current-in-tab="false">
+          <file leaf-file-name="output.txt" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/data/output.txt">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="565">
+                <state relative-caret-position="45968">
                   <caret line="2704" column="0" lean-forward="true" selection-start-line="2704" selection-start-column="0" selection-end-line="2704" selection-end-column="0" />
                   <folding />
                 </state>
@@ -544,7 +543,14 @@
       <option name="project" value="LOCAL" />
       <updated>1492192601043</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="ID3_3RD_FINAL">
+      <created>1492213776331</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1492213776331</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView">
@@ -592,7 +598,8 @@
     <MESSAGE value="NN_COMPLETE" />
     <MESSAGE value="ID3_1ST" />
     <MESSAGE value="ID3_2ND" />
-    <option name="LAST_COMMIT_MESSAGE" value="ID3_2ND" />
+    <MESSAGE value="ID3_3RD_FINAL" />
+    <option name="LAST_COMMIT_MESSAGE" value="ID3_3RD_FINAL" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -995,29 +1002,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/output.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="565">
-          <caret line="2704" column="0" lean-forward="true" selection-start-line="2704" selection-start-column="0" selection-end-line="2704" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/datadescription.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="56" lean-forward="false" selection-start-line="16" selection-start-column="56" selection-end-line="16" selection-end-column="56" />
+        <state relative-caret-position="374">
+          <caret line="22" column="45" lean-forward="true" selection-start-line="22" selection-start-column="45" selection-end-line="22" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ID3_approach.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="332" column="12" lean-forward="true" selection-start-line="332" selection-start-column="12" selection-end-line="332" selection-end-column="12" />
+        <state relative-caret-position="-1974">
+          <caret line="214" column="9" lean-forward="true" selection-start-line="214" selection-start-column="9" selection-end-line="215" selection-end-column="33" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/output.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45968">
+          <caret line="2704" column="0" lean-forward="true" selection-start-line="2704" selection-start-column="0" selection-end-line="2704" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

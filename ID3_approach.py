@@ -10,7 +10,7 @@ from copy import deepcopy
 from treelib import Node, Tree
 
 
-# https://gist.github.com/whitehaven/bbd408edca38de93637635b52d2bba89
+# ref: https://gist.github.com/whitehaven/bbd408edca38de93637635b52d2bba89
 
 
 def ID3_entropies(data_df):
@@ -52,10 +52,6 @@ def ID3_entropies(data_df):
     data_df_entropy_se.sort_values(ascending=False, inplace=True)
     return data_df_entropy_se
 
-
-
-
-current_leaves = queue.PriorityQueue()
 
 
 
@@ -195,7 +191,7 @@ def iterate_depth_first_generation(c_node):
                 temp_node = tree.create_node(label_name, current_node_index, c_node.identifier, data=node_to_be_added)
                 iterate_depth_first_generation(temp_node)
         else:
-            # Comment here used for tracking expected output
+            # Comment here is used for tracking expected output
             # cc_node = c_node
             # condition_arr = {}
             # while 1:
